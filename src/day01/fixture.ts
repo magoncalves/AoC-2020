@@ -1,4 +1,4 @@
-export const getLargeInput = (): Array<Number> => [
+export const getLargeInput = (): Array<number> => [
   1287,
   1366,
   1669,
