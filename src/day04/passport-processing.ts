@@ -91,7 +91,7 @@ const getValidPasswords = (passwordKeys: string[][]): boolean[] =>
 const countValidPasswords = (validPasswords: boolean[]): number =>
   validPasswords.filter(Boolean).length;
 
-export const countValidPassportsPartOne = (input: string): any => {
+export const countValidPassportsPartOne = (input: string): number => {
   const validPasswords = pipe(
     getPasswords,
     extractProps,
