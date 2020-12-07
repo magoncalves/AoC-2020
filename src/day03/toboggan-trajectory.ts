@@ -69,10 +69,8 @@ export const countTreesPartTwo = (
   const area = buildArea(input);
 
   const treesList = trajectories.reduce((acc, trajectory) => {
-    const trees = pipe(
-      getPositions,
-      countTrees
-    )(area, trajectory);
+    const positions = getPositions(area, trajectory);
+    const trees = countTrees(positions);
 
     return [...acc, trees];
   }, []);
