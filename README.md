@@ -1,3 +1,5 @@
+![CI](https://github.com/magoncalves/AoC-2020/workflows/CI/badge.svg)
+
 # Advent of Code 2020
 
 After saving Christmas five years in a row, you've decided to take a vacation at a nice resort on a tropical island. Surely, Christmas will go on without you.
