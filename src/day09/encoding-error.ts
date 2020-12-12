@@ -40,38 +40,46 @@ const findNumberNotMatchingPreamble = (preamble: number) => (
 };
 
 const getContiguousSet = (sequence: number[]) => (target: number) => {
-  const findSet = (
-    list: number[],
-    nextIndex: number,
-    relativeIndex: number,
-    accumulator
-  ): number[] => {
-    // new Promise((resolve) => {
-    const newList = list.concat(sequence[relativeIndex]);
-    const sum = accumulator + sequence[relativeIndex];
+  // const findSet = (
+  //   list: number[],
+  //   nextIndex: number,
+  //   relativeIndex: number,
+  //   accumulator
+  // ): number[] => {
+  //   const newList = list.concat(sequence[relativeIndex]);
+  //   const sum = accumulator + sequence[relativeIndex];
 
-    // console.log({ newList, sum });
+  //   if (sum === target) {
+  //     return newList;
+  //   }
+  //   if (sum < target) {
+  //     return findSet(newList, nextIndex, relativeIndex + 1, sum);
+  //   }
+  //   return findSet([], nextIndex + 1, nextIndex + 1, 0);
+  // };
 
-    if (sum === target) {
-      // resolve(newList);
-      return newList;
+  // return findSet([], 0, 0, 0);
+
+  // NOTE: Solution above is exceeding the maximum call stack for the larger data set :(
+  for (let i = 0; i < sequence.length; i++) {
+    let total = sequence[i];
+
+    for (let j = i + 1; j < sequence.length; j++) {
+      const subTotal = total + sequence[j];
+
+      if (subTotal > target) {
+        break;
+      } else if (subTotal === target) {
+        return sequence.slice(i, j);
+      } else {
+        total += sequence[j];
+      }
     }
-    if (sum < target) {
-      // return setImmediate(() =>
-      return findSet(newList, nextIndex, relativeIndex + 1, sum);
-      // );
-    }
-    // return setImmediate(() =>
-    return findSet([], nextIndex + 1, nextIndex + 1, 0);
-    // );
-  };
-  // });
-
-  return findSet([], 0, 0, 0);
+  }
 };
 
 const getEncryptionWeakness = (contiguousSet: number[]): number => {
-  const sortedList = [...contiguousSet].sort();
+  const sortedList = [...contiguousSet].sort((a, b) => a - b);
   return sortedList[0] + sortedList[sortedList.length - 1];
 };
 
@@ -100,5 +108,4 @@ export const findEncryptionWeakness = (
   )(sequence);
 
   return number;
-  // return getEncryptionWeakness(contiguousSet);
 };

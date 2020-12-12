@@ -76,11 +76,11 @@ describe("Encoding Error", () => {
     });
 
     describe("when the input is large", () => {
-      it("should find the encryption weakness", async () => {
+      it("should find the encryption weakness", () => {
         const input = getLargeInput();
         const output = findEncryptionWeakness(input);
 
-        expect(output).toBeGreaterThan(2015867);
+        expect(output).toEqual(2174232);
       });
     });
   });
